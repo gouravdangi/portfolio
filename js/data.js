@@ -141,6 +141,6 @@ const SKILLS = [
 const ACHIEVEMENTS = [
   { icon: '🏆', title: 'BlinkX Rodies Achiever Award',        desc: 'Employee of the quarter equivalent in the AI/ML domain — Q4 2023' },
   { icon: '🎖️', title: 'Institute Secretary — Volleyball',    desc: 'Elected secretary of the volleyball club at IIT Guwahati for 2020-21' },
-  { icon: '💻', title: 'LeetCode Rating 1750+',               desc: 'Competitive programming', link: 'https://leetcode.com/u/gouravdangi2002/' },
+  { icon: '💻', title: 'LeetCode Rating 1771',               desc: 'Competitive programming', link: 'https://leetcode.com/u/gouravdangi2002/' },
   { icon: '🎭', title: 'Inter-IIT Cultural Meet — 3rd Place', desc: 'Theatre module among 23 IITs at IIT Bombay (2019)' },
 ];
