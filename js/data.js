@@ -58,7 +58,7 @@ const PROJECTS = [
   },
   {
     id: 'falcon',
-    index: '02',
+    index: '06',
     title: 'Falcon 9 Cost Predictor',
     summary: 'Predict launch cost & landing probability from payload, orbit, and reuse data.',
     badge: 'Interactive Demo',
@@ -70,7 +70,7 @@ const PROJECTS = [
   },
   {
     id: 'chatbot',
-    index: '03',
+    index: '05',
     title: 'Agri RAG Chatbot',
     summary: 'Intent-aware agricultural advisory chatbot backed by a RAG knowledge base.',
     badge: 'Try it',
@@ -94,7 +94,7 @@ const PROJECTS = [
   },
   {
     id: 'graphrag',
-    index: '05',
+    index: '02',
     title: 'GraphRAG Customer Support',
     summary: 'End-to-end support automation pipeline serving 77% of tickets without human touch.',
     badge: 'Production',
@@ -106,7 +106,7 @@ const PROJECTS = [
   },
   {
     id: 'anomaly',
-    index: '06',
+    index: '03',
     title: 'Anomaly Detection via Whisper + LLM',
     summary: 'Detects mis-selling in call recordings using STT and an LLM compliance pipeline.',
     badge: 'ML Pipeline',
