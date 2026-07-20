@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Anomaly Detection — Mis-selling | Gourav Dangi</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link rel="icon" type="image/svg+xml" href="../assets/favicon.svg" />
+  <link rel="stylesheet" href="../css/styles.css" />
+  <script>(function(){var s=localStorage.getItem('theme')||(window.matchMedia('(prefers-color-scheme:dark)').matches?'dark':'light');document.documentElement.setAttribute('data-theme',s);})();</script>
+</head>
+<body>
+
+<nav id="navbar">
+  <div class="container nav-inner">
+    <a href="../index.html" class="nav-logo">GD</a>
+    <ul class="nav-links">
+      <li><a href="../index.html#about">About</a></li>
+      <li><a href="../index.html#experience">Experience</a></li>
+      <li><a href="../index.html#projects">Projects</a></li>
+      <li><a href="../index.html#skills">Skills</a></li>
+      <li><a href="../index.html#contact">Contact</a></li>
+    </ul>
+    <div class="nav-actions">
+      <a href="../assets/resume.pdf" download class="btn-resume desktop">Resume</a>
+      <button class="theme-toggle" id="themeToggle" aria-label="Toggle colour theme">
+        <svg class="icon-sun" viewBox="0 0 24 24"><circle cx="12" cy="12" r="5"/><line x1="12" y1="2" x2="12" y2="4"/><line x1="12" y1="20" x2="12" y2="22"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="2" y1="12" x2="4" y2="12"/><line x1="20" y1="12" x2="22" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/></svg>
+        <svg class="icon-moon" viewBox="0 0 24 24" style="display:none"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
+      </button>
+      <button class="hamburger" id="hamburger" aria-label="Open menu" aria-expanded="false">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </div>
+</nav>
+<div class="nav-mobile" id="mobileNav">
+  <a href="../index.html#about">About</a>
+  <a href="../index.html#experience">Experience</a>
+  <a href="../index.html#projects">Projects</a>
+  <a href="../index.html#skills">Skills</a>
+  <a href="../index.html#contact">Contact</a>
+</div>
+
+<div class="proj-page">
+  <div class="proj-page-header">
+    <div class="container">
+      <a href="../index.html#projects" class="proj-back">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><polyline points="15 18 9 12 15 6"/></svg>
+        Back to projects
+      </a>
+      <div class="proj-page-kicker">06 &mdash; ML Pipeline</div>
+      <h1 class="proj-page-title">Anomaly Detection via Whisper + LLM</h1>
+      <p class="proj-page-sub">Detects potential mis-selling in sales call recordings using speech-to-text transcription and an LLM compliance analysis pipeline.</p>
+    </div>
+  </div>
+
+  <div class="container" style="padding-block: 3.5rem">
+
+    <div class="stats-strip" style="max-width:800px;margin-bottom:3rem">
+      <div class="stat-card">
+        <div class="stat-value">Whisper</div>
+        <div class="stat-label">STT transcription engine</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-value">LLM</div>
+        <div class="stat-label">Compliance analysis</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-value">Auto</div>
+        <div class="stat-label">Compliance report generation</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-value">JM Financial</div>
+        <div class="stat-label">Deployed in production</div>
+      </div>
+    </div>
+
+    <div class="detail-grid">
+      <div class="detail-block">
+        <h4>The problem</h4>
+        <p>Financial regulators require firms to monitor sales calls for mis-selling — pitching products that don't match a customer's stated risk profile or financial goals. Manually reviewing thousands of calls per week is expensive and inconsistent.</p>
+      </div>
+
+      <div class="detail-block">
+        <h4>The approach</h4>
+        <p>Recorded calls are transcribed using <strong>OpenAI Whisper</strong> (self-hosted). The transcript is then passed to an LLM pipeline (via <strong>LangChain</strong>) that checks for red-flag patterns: promising guaranteed returns, omitting risk disclosures, or misrepresenting fees. Flagged calls are scored and routed to a compliance officer with a structured report.</p>
+      </div>
+
+      <div class="detail-block">
+        <h4>Output</h4>
+        <p>Each flagged call produces an auto-generated compliance report with a risk score, highlighted transcript segments, and the specific regulatory clause violated. The pipeline surfaces the most critical issues first, allowing compliance teams to focus their attention on the highest-risk interactions.</p>
+      </div>
+
+      <div class="detail-block">
+        <h4>Visualisation</h4>
+        <p><strong>Plotly</strong> dashboards aggregate flag rates by agent, product type, and time period — giving managers a real-time view of compliance risk across the salesforce. Anomaly scores use a z-score-based outlier method over rolling 7-day windows.</p>
+      </div>
+
+      <div class="detail-block">
+        <h4>Technology stack</h4>
+        <div class="project-tags" style="margin-top:0.4rem">
+          <span class="tag">Whisper STT</span>
+          <span class="tag">LangChain</span>
+          <span class="tag">Python</span>
+          <span class="tag">NLP</span>
+          <span class="tag">Plotly</span>
+          <span class="tag">PostgreSQL</span>
+          <span class="tag">FastAPI</span>
+        </div>
+      </div>
+
+      <div class="detail-block">
+        <h4>Why this matters</h4>
+        <p>Mis-selling in financial services carries heavy regulatory penalties (e.g., FCA enforcement actions). Automating first-pass detection dramatically reduces compliance audit costs and gives firms an auditable AI paper trail. The LLM also surfaces training insights — common phrases that correlate with mis-selling risk — feeding back into agent coaching.</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<footer>
+  <div class="container footer-inner">
+    <p class="footer-left">&copy; 2025 <strong>Gourav Dangi</strong></p>
+    <a href="../index.html" class="back-top">
+      <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><polyline points="15 18 9 12 15 6"/></svg>
+      Home
+    </a>
+  </div>
+</footer>
+
+<script src="../js/site.js"></script>
+</body>
+</html>

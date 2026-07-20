@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Air Pollution Hotspot Mapping | Gourav Dangi</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link rel="icon" type="image/svg+xml" href="../assets/favicon.svg" />
+  <link rel="stylesheet" href="../css/styles.css" />
+  <script>(function(){var s=localStorage.getItem('theme')||(window.matchMedia('(prefers-color-scheme:dark)').matches?'dark':'light');document.documentElement.setAttribute('data-theme',s);})();</script>
+</head>
+<body>
+
+<nav id="navbar">
+  <div class="container nav-inner">
+    <a href="../index.html" class="nav-logo">GD</a>
+    <ul class="nav-links">
+      <li><a href="../index.html#about">About</a></li>
+      <li><a href="../index.html#experience">Experience</a></li>
+      <li><a href="../index.html#projects">Projects</a></li>
+      <li><a href="../index.html#skills">Skills</a></li>
+      <li><a href="../index.html#contact">Contact</a></li>
+    </ul>
+    <div class="nav-actions">
+      <a href="../assets/resume.pdf" download class="btn-resume desktop">Resume</a>
+      <button class="theme-toggle" id="themeToggle" aria-label="Toggle colour theme">
+        <svg class="icon-sun" viewBox="0 0 24 24"><circle cx="12" cy="12" r="5"/><line x1="12" y1="2" x2="12" y2="4"/><line x1="12" y1="20" x2="12" y2="22"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="2" y1="12" x2="4" y2="12"/><line x1="20" y1="12" x2="22" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/></svg>
+        <svg class="icon-moon" viewBox="0 0 24 24" style="display:none"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
+      </button>
+      <button class="hamburger" id="hamburger" aria-label="Open menu" aria-expanded="false">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </div>
+</nav>
+<div class="nav-mobile" id="mobileNav">
+  <a href="../index.html#about">About</a>
+  <a href="../index.html#experience">Experience</a>
+  <a href="../index.html#projects">Projects</a>
+  <a href="../index.html#skills">Skills</a>
+  <a href="../index.html#contact">Contact</a>
+</div>
+
+<div class="proj-page">
+  <div class="proj-page-header">
+    <div class="container">
+      <a href="../index.html#projects" class="proj-back">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><polyline points="15 18 9 12 15 6"/></svg>
+        Back to projects
+      </a>
+      <div class="proj-page-kicker">07 &mdash; B.Tech Thesis Research</div>
+      <h1 class="proj-page-title">Air Pollution Hotspot Mapping</h1>
+      <p class="proj-page-sub">Spatial analysis of particulate-matter and gaseous-pollutant hotspots — B.Tech thesis under Dr. Sharad Gokhale at IIT Guwahati.</p>
+    </div>
+  </div>
+
+  <div class="container" style="padding-block: 3.5rem">
+
+    <div class="stats-strip" style="max-width:800px;margin-bottom:3rem">
+      <div class="stat-card">
+        <div class="stat-value">IIT-G</div>
+        <div class="stat-label">B.Tech thesis, 2022–2023</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-value">PM2.5</div>
+        <div class="stat-label">Primary pollutant studied</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-value">GIS</div>
+        <div class="stat-label">Spatial analysis method</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-value">Folium</div>
+        <div class="stat-label">Interactive map output</div>
+      </div>
+    </div>
+
+    <div class="detail-grid">
+      <div class="detail-block">
+        <h4>Thesis overview</h4>
+        <p>Identification and spatial characterisation of air-quality hotspots in a medium-sized Indian city. The study analysed PM2.5, PM10, NO₂, SO₂, and CO readings from continuous monitoring stations alongside meteorological data (wind speed/direction, temperature, humidity) to map pollutant dispersion patterns.</p>
+      </div>
+
+      <div class="detail-block">
+        <h4>Methodology</h4>
+        <p>Sensor data was cleaned, normalised, and geo-referenced. <strong>Kriging interpolation</strong> (via ArcGIS / Python) was used to generate spatial concentration surfaces. Hotspots were identified using <strong>Kernel Density Estimation</strong> and validated against traffic flow and industrial source data. Correlation analysised the dominant emission sources for each pollutant.</p>
+      </div>
+
+      <div class="detail-block">
+        <h4>Key findings</h4>
+        <p>Peak PM2.5 concentrations were <strong>4.2× the WHO annual guideline</strong> at identified hotspots. Traffic-related emissions dominated for NO₂ (62% correlation with vehicle count), while PM2.5 hotspots overlapped significantly with construction and biomass-burning zones. Wind-direction analysis showed clear seasonal transport patterns from industrial corridors.</p>
+      </div>
+
+      <div class="detail-block">
+        <h4>Visualisation tools</h4>
+        <p><strong>Folium</strong> interactive maps display hotspot clusters with drill-down time-series charts per monitoring station. <strong>Seaborn</strong> heatmaps show diurnal and seasonal pollution patterns. All outputs are reproducible via the Jupyter notebook pipeline included in the repository.</p>
+      </div>
+
+      <div class="detail-block">
+        <h4>Technology stack</h4>
+        <div class="project-tags" style="margin-top:0.4rem">
+          <span class="tag">Python</span>
+          <span class="tag">GIS / Spatial Analysis</span>
+          <span class="tag">Folium</span>
+          <span class="tag">Seaborn</span>
+          <span class="tag">Pandas</span>
+          <span class="tag">NumPy</span>
+          <span class="tag">Jupyter</span>
+          <span class="tag">ArcGIS</span>
+        </div>
+      </div>
+
+      <div class="detail-block">
+        <h4>Links</h4>
+        <div class="info-links" style="margin-top:0.4rem">
+          <a href="https://github.com/gouravdangi/Air-Pollution-Hotepot" target="_blank" rel="noopener" class="info-link">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
+            GitHub — Air-Pollution-Hotepot
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<footer>
+  <div class="container footer-inner">
+    <p class="footer-left">&copy; 2025 <strong>Gourav Dangi</strong></p>
+    <a href="../index.html" class="back-top">
+      <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><polyline points="15 18 9 12 15 6"/></svg>
+      Home
+    </a>
+  </div>
+</footer>
+
+<script src="../js/site.js"></script>
+</body>
+</html>

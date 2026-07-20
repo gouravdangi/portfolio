@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>GraphRAG Customer Support | Gourav Dangi</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link rel="icon" type="image/svg+xml" href="../assets/favicon.svg" />
+  <link rel="stylesheet" href="../css/styles.css" />
+  <script>(function(){var s=localStorage.getItem('theme')||(window.matchMedia('(prefers-color-scheme:dark)').matches?'dark':'light');document.documentElement.setAttribute('data-theme',s);})();</script>
+</head>
+<body>
+
+<nav id="navbar">
+  <div class="container nav-inner">
+    <a href="../index.html" class="nav-logo">GD</a>
+    <ul class="nav-links">
+      <li><a href="../index.html#about">About</a></li>
+      <li><a href="../index.html#experience">Experience</a></li>
+      <li><a href="../index.html#projects">Projects</a></li>
+      <li><a href="../index.html#skills">Skills</a></li>
+      <li><a href="../index.html#contact">Contact</a></li>
+    </ul>
+    <div class="nav-actions">
+      <a href="../assets/resume.pdf" download class="btn-resume desktop">Resume</a>
+      <button class="theme-toggle" id="themeToggle" aria-label="Toggle colour theme">
+        <svg class="icon-sun" viewBox="0 0 24 24"><circle cx="12" cy="12" r="5"/><line x1="12" y1="2" x2="12" y2="4"/><line x1="12" y1="20" x2="12" y2="22"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="2" y1="12" x2="4" y2="12"/><line x1="20" y1="12" x2="22" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/></svg>
+        <svg class="icon-moon" viewBox="0 0 24 24" style="display:none"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
+      </button>
+      <button class="hamburger" id="hamburger" aria-label="Open menu" aria-expanded="false">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </div>
+</nav>
+<div class="nav-mobile" id="mobileNav">
+  <a href="../index.html#about">About</a>
+  <a href="../index.html#experience">Experience</a>
+  <a href="../index.html#projects">Projects</a>
+  <a href="../index.html#skills">Skills</a>
+  <a href="../index.html#contact">Contact</a>
+</div>
+
+<div class="proj-page">
+  <div class="proj-page-header">
+    <div class="container">
+      <a href="../index.html#projects" class="proj-back">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><polyline points="15 18 9 12 15 6"/></svg>
+        Back to projects
+      </a>
+      <div class="proj-page-kicker">05 &mdash; Production AI System</div>
+      <h1 class="proj-page-title">GraphRAG Customer Support Automation</h1>
+      <p class="proj-page-sub">End-to-end support pipeline that handles 77% of incoming tickets without a human — cutting first-response time from 48 hours to under 1 minute.</p>
+    </div>
+  </div>
+
+  <div class="container" style="padding-block: 3.5rem">
+
+    <!-- Impact stats row -->
+    <div class="stats-strip" style="max-width:800px;margin-bottom:3rem">
+      <div class="stat-card">
+        <div class="stat-value">77%</div>
+        <div class="stat-label">Tickets automated end-to-end</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-value">&lt;1 min</div>
+        <div class="stat-label">First-response time</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-value">48 h → 1 min</div>
+        <div class="stat-label">Response time reduction</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-value">Prod</div>
+        <div class="stat-label">Live at Respo Financial</div>
+      </div>
+    </div>
+
+    <div class="detail-grid">
+      <div class="detail-block">
+        <h4>The problem</h4>
+        <p>Respo Financial's customer support team was spending most of its time on repetitive, templated tickets — EMI queries, account status checks, repayment schedules, and escalation acknowledgements. Response times averaged 48 hours, leading to customer churn and agent burnout.</p>
+      </div>
+
+      <div class="detail-block">
+        <h4>The approach</h4>
+        <p>Built a <strong>GraphRAG</strong> pipeline using a <strong>Neo4j</strong> knowledge graph that models relationships between customers, products, policies, and past interactions. Incoming tickets are embedded and matched against the graph, the relevant subgraph is retrieved, and a local LLM (served via <strong>Ollama</strong>) drafts the response. A <strong>LangGraph</strong> orchestrator handles routing, human-escalation detection, and workflow automation.</p>
+      </div>
+
+      <div class="detail-block">
+        <h4>Impact</h4>
+        <div class="impact-stat"><span class="impact-num">77%</span><span class="impact-label">of tickets resolved fully autonomously</span></div>
+        <div class="impact-stat"><span class="impact-num">48h→1m</span><span class="impact-label">first-response time</span></div>
+        <p style="margin-top:0.7rem">The remaining 23% are routed to agents with a pre-populated context summary, cutting handling time in half for those too.</p>
+      </div>
+
+      <div class="detail-block">
+        <h4>Architecture highlights</h4>
+        <p><strong>GraphRAG</strong> outperforms flat vector search here because relationships matter — an EMI query needs the customer's account graph, not just keyword similarity. The system runs entirely on-prem with <strong>Ollama</strong> (Mistral 7B), so no PII leaves the perimeter. LangGraph provides the retry/escalation loop with full observability.</p>
+      </div>
+
+      <div class="detail-block">
+        <h4>Technology stack</h4>
+        <div class="project-tags" style="margin-top:0.4rem">
+          <span class="tag">GraphRAG</span>
+          <span class="tag">Neo4j</span>
+          <span class="tag">LangGraph</span>
+          <span class="tag">Ollama (Mistral 7B)</span>
+          <span class="tag">Python</span>
+          <span class="tag">FastAPI</span>
+          <span class="tag">Pinecone</span>
+          <span class="tag">Docker</span>
+        </div>
+      </div>
+
+      <div class="detail-block">
+        <h4>Other AI work at Respo Financial</h4>
+        <p>Alongside the GraphRAG system, I built <strong>AI voice-calling agents</strong> using Sarvam STT/TTS for debt collection and EMI reminders — completing <strong>3,000+ automated calls per day</strong>, equivalent to 30+ human agents. Operational dashboards track call outcomes, escalation rates, and bot performance.</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<footer>
+  <div class="container footer-inner">
+    <p class="footer-left">&copy; 2025 <strong>Gourav Dangi</strong></p>
+    <a href="../index.html" class="back-top">
+      <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><polyline points="15 18 9 12 15 6"/></svg>
+      Home
+    </a>
+  </div>
+</footer>
+
+<script src="../js/site.js"></script>
+</body>
+</html>

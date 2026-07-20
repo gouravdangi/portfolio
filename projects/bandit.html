@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Multi-Armed Bandit — Nudge Timing | Gourav Dangi</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link rel="icon" type="image/svg+xml" href="../assets/favicon.svg" />
+  <link rel="stylesheet" href="../css/styles.css" />
+  <script>(function(){var s=localStorage.getItem('theme')||(window.matchMedia('(prefers-color-scheme:dark)').matches?'dark':'light');document.documentElement.setAttribute('data-theme',s);})();</script>
+</head>
+<body>
+
+<nav id="navbar">
+  <div class="container nav-inner">
+    <a href="../index.html" class="nav-logo">GD</a>
+    <ul class="nav-links">
+      <li><a href="../index.html#about">About</a></li>
+      <li><a href="../index.html#experience">Experience</a></li>
+      <li><a href="../index.html#projects">Projects</a></li>
+      <li><a href="../index.html#skills">Skills</a></li>
+      <li><a href="../index.html#contact">Contact</a></li>
+    </ul>
+    <div class="nav-actions">
+      <a href="../assets/resume.pdf" download class="btn-resume desktop">Resume</a>
+      <button class="theme-toggle" id="themeToggle" aria-label="Toggle colour theme">
+        <svg class="icon-sun" viewBox="0 0 24 24"><circle cx="12" cy="12" r="5"/><line x1="12" y1="2" x2="12" y2="4"/><line x1="12" y1="20" x2="12" y2="22"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="2" y1="12" x2="4" y2="12"/><line x1="20" y1="12" x2="22" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/></svg>
+        <svg class="icon-moon" viewBox="0 0 24 24" style="display:none"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
+      </button>
+      <button class="hamburger" id="hamburger" aria-label="Open menu" aria-expanded="false">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </div>
+</nav>
+<div class="nav-mobile" id="mobileNav">
+  <a href="../index.html#about">About</a>
+  <a href="../index.html#experience">Experience</a>
+  <a href="../index.html#projects">Projects</a>
+  <a href="../index.html#skills">Skills</a>
+  <a href="../index.html#contact">Contact</a>
+</div>
+
+<div class="proj-page">
+  <div class="proj-page-header">
+    <div class="container">
+      <a href="../index.html#projects" class="proj-back">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><polyline points="15 18 9 12 15 6"/></svg>
+        Back to projects
+      </a>
+      <div class="proj-page-kicker">04 &mdash; RLHF Simulation</div>
+      <h1 class="proj-page-title">Multi-Armed Bandit — Nudge Timing</h1>
+      <p class="proj-page-sub">Watch an epsilon-greedy agent learn the best hour to trigger a push notification — CTR climbs from 2.4% to 7.4%.</p>
+    </div>
+  </div>
+
+  <div class="container">
+    <div class="proj-page-body">
+
+      <!-- Demo -->
+      <div class="proj-demo-area">
+        <div class="bandit-demo">
+          <div class="bandit-info-box">
+            Each hour (8&nbsp;AM–11&nbsp;PM) is a <strong>bandit arm</strong>. Click an hour to send a simulated push notification at that time. The epsilon-greedy agent (&epsilon;&nbsp;=&nbsp;0.15) mixes exploration with exploitation to find the arm with the highest click-through rate.
+            Best hour (after enough pulls): <strong id="banditOptHour">?</strong>
+          </div>
+          <div class="bandit-ctr-display">
+            <div class="bandit-ctr-label">Current CTR</div>
+            <div class="bandit-ctr-val" id="banditCtr">2.4%</div>
+          </div>
+          <div class="hour-grid" id="hourGrid"></div>
+          <div class="bandit-chart-wrap">
+            <canvas id="banditCanvas"></canvas>
+          </div>
+          <div class="bandit-actions">
+            <button id="banditAutorun" class="btn-autorun">⚡ Auto-run 200 pulls</button>
+            <button id="banditReset">↺ Reset</button>
+          </div>
+          <p style="font-size:0.82rem;color:var(--muted);margin-top:0.5rem">
+            Highlighted bar = highest estimated CTR so far. The true best arm is <strong>2&nbsp;PM</strong> at 7.4%.
+          </p>
+        </div>
+      </div>
+
+      <!-- Info column -->
+      <div class="proj-info-col">
+        <div class="proj-info-section">
+          <h4>The project</h4>
+          <p>Identifies the optimal time of day to send a push notification to maximise click-through rate. Deployed at <strong>JM Financial</strong> — raised production CTR from 2.4% to 7.4%.</p>
+        </div>
+        <div class="proj-info-section">
+          <h4>Algorithm</h4>
+          <p>Epsilon-greedy multi-armed bandit (&epsilon;&nbsp;=&nbsp;0.15): with 15% probability the agent explores a random arm; otherwise it exploits the arm with the highest observed reward. Q-values (estimated CTRs) are updated after every pull.</p>
+        </div>
+        <div class="proj-info-section">
+          <h4>Convergence</h4>
+          <p>Click "Auto-run 200 pulls" to watch the algorithm converge in seconds — the bar for <strong>2&nbsp;PM</strong> grows taller as the agent discovers it has the highest true CTR (7.4%).</p>
+        </div>
+        <div class="proj-info-section">
+          <h4>Stack</h4>
+          <div class="project-tags" style="margin-top:0.4rem">
+            <span class="tag">Python</span>
+            <span class="tag">RLHF</span>
+            <span class="tag">Epsilon-Greedy</span>
+            <span class="tag">Bayesian Bandits</span>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+<footer>
+  <div class="container footer-inner">
+    <p class="footer-left">&copy; 2025 <strong>Gourav Dangi</strong></p>
+    <a href="../index.html" class="back-top">
+      <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><polyline points="15 18 9 12 15 6"/></svg>
+      Home
+    </a>
+  </div>
+</footer>
+
+<script src="../js/site.js"></script>
+<script src="../js/bandit.js"></script>
+<script>initBandit();</script>
+</body>
+</html>

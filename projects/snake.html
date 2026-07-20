@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Snake — Human vs AI | Gourav Dangi</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link rel="icon" type="image/svg+xml" href="../assets/favicon.svg" />
+  <link rel="stylesheet" href="../css/styles.css" />
+  <script>(function(){var s=localStorage.getItem('theme')||(window.matchMedia('(prefers-color-scheme:dark)').matches?'dark':'light');document.documentElement.setAttribute('data-theme',s);})();</script>
+</head>
+<body>
+
+<nav id="navbar">
+  <div class="container nav-inner">
+    <a href="../index.html" class="nav-logo">GD</a>
+    <ul class="nav-links">
+      <li><a href="../index.html#about">About</a></li>
+      <li><a href="../index.html#experience">Experience</a></li>
+      <li><a href="../index.html#projects">Projects</a></li>
+      <li><a href="../index.html#skills">Skills</a></li>
+      <li><a href="../index.html#contact">Contact</a></li>
+    </ul>
+    <div class="nav-actions">
+      <a href="../assets/resume.pdf" download class="btn-resume desktop">Resume</a>
+      <button class="theme-toggle" id="themeToggle" aria-label="Toggle colour theme">
+        <svg class="icon-sun" viewBox="0 0 24 24"><circle cx="12" cy="12" r="5"/><line x1="12" y1="2" x2="12" y2="4"/><line x1="12" y1="20" x2="12" y2="22"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="2" y1="12" x2="4" y2="12"/><line x1="20" y1="12" x2="22" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/></svg>
+        <svg class="icon-moon" viewBox="0 0 24 24" style="display:none"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
+      </button>
+      <button class="hamburger" id="hamburger" aria-label="Open menu" aria-expanded="false">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </div>
+</nav>
+<div class="nav-mobile" id="mobileNav">
+  <a href="../index.html#about">About</a>
+  <a href="../index.html#experience">Experience</a>
+  <a href="../index.html#projects">Projects</a>
+  <a href="../index.html#skills">Skills</a>
+  <a href="../index.html#contact">Contact</a>
+</div>
+
+<div class="proj-page">
+  <div class="proj-page-header">
+    <div class="container">
+      <a href="../index.html#projects" class="proj-back">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><polyline points="15 18 9 12 15 6"/></svg>
+        Back to projects
+      </a>
+      <div class="proj-page-kicker">01 &mdash; Interactive Game</div>
+      <h1 class="proj-page-title">Snake — Human vs AI</h1>
+      <p class="proj-page-sub">Play against a trained Deep Q-Network agent in real-time. Both boards share an identical seeded food sequence — the race is fair.</p>
+    </div>
+  </div>
+
+  <div class="container">
+    <div class="proj-page-body">
+
+      <!-- Demo -->
+      <div class="proj-demo-area">
+        <div class="snake-race">
+          <!-- Scoreboard -->
+          <div class="snake-scoreboard">
+            <div class="snake-player-score">
+              <h4>You</h4>
+              <div class="snake-score-val" id="humanScore">0</div>
+            </div>
+            <div class="vs-divider">VS</div>
+            <div class="snake-player-score" style="text-align:right">
+              <h4>AI Agent</h4>
+              <div class="snake-score-val" id="aiScore">0</div>
+            </div>
+          </div>
+
+          <!-- Boards -->
+          <div class="snake-boards">
+            <div class="snake-board-wrap">
+              <div class="snake-board-label">You — Arrow keys / WASD</div>
+              <canvas id="humanCanvas" class="snake-canvas active-board" width="360" height="360"></canvas>
+            </div>
+            <div class="snake-board-wrap">
+              <div class="snake-board-label">RL Agent — Trained DQN</div>
+              <canvas id="aiCanvas" class="snake-canvas" width="360" height="360"></canvas>
+            </div>
+          </div>
+
+          <!-- Result -->
+          <div class="snake-result" id="snakeResult">
+            <div class="result-text">—</div>
+            <p style="font-size:0.88rem;color:var(--muted);margin-top:0.3rem">Press Restart to play again</p>
+          </div>
+
+          <!-- Controls row -->
+          <div class="snake-controls-row">
+            <button id="snakeStart">▶ Start</button>
+            <button id="snakePause">⏸ Pause</button>
+            <button id="snakeRestart">↺ Restart</button>
+            <span class="speed-label">Speed:</span>
+            <button class="speed-btn" data-speed="chill">Chill</button>
+            <button class="speed-btn active" data-speed="normal">Normal</button>
+            <button class="speed-btn" data-speed="fast">Fast</button>
+          </div>
+
+          <!-- D-pad (mobile) -->
+          <div class="dpad" aria-label="D-pad controls" style="margin-top:0.8rem">
+            <button id="dUp" class="dpad-up">↑</button>
+            <button id="dLeft" class="dpad-left">←</button>
+            <div></div>
+            <button id="dRight" class="dpad-right">→</button>
+            <button id="dDown" class="dpad-down">↓</button>
+          </div>
+
+          <p style="font-size:0.82rem;color:var(--muted);margin-top:0.8rem;text-align:center">
+            Arrow keys / WASD to steer your snake. Both boards use the same food positions.
+          </p>
+        </div>
+      </div>
+
+      <!-- Info column -->
+      <div class="proj-info-col">
+        <div class="proj-info-section">
+          <h4>The project</h4>
+          <p>A reinforcement-learning agent that learns to play Snake from scratch using Deep Q-Networks (DQN). The agent observes the grid state and learns a policy that maximises food collected before dying.</p>
+        </div>
+        <div class="proj-info-section">
+          <h4>How the AI plays</h4>
+          <p>The AI runs the <strong>actual trained DQN</strong> weights loaded directly from <code>model.pth</code> (Linear_QNet 11→256→3). It observes 11 features — danger straight/right/left, current direction, and food location — and picks the highest-Q action each step.</p>
+        </div>
+        <div class="proj-info-section">
+          <h4>Race rules</h4>
+          <p>Both boards receive food at the same positions (seeded sequence, seed&nbsp;42) so neither player has an advantage. A snake that runs into itself freezes — the other keeps going until it dies too.</p>
+        </div>
+        <div class="proj-info-section">
+          <h4>Stack</h4>
+          <div class="project-tags" style="margin-top:0.4rem">
+            <span class="tag">Python</span>
+            <span class="tag">PyTorch</span>
+            <span class="tag">Deep Q-Network</span>
+            <span class="tag">Reinforcement Learning</span>
+          </div>
+        </div>
+        <div class="proj-info-section">
+          <h4>Links</h4>
+          <div class="info-links">
+            <a href="https://github.com/gouravdangi/Sanke_game_AI" target="_blank" rel="noopener" class="info-link">
+              <svg viewBox="0 0 24 24"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
+              GitHub — Sanke_game_AI
+            </a>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+<footer>
+  <div class="container footer-inner">
+    <p class="footer-left">&copy; 2025 <strong>Gourav Dangi</strong></p>
+    <a href="../index.html" class="back-top">
+      <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><polyline points="15 18 9 12 15 6"/></svg>
+      Home
+    </a>
+  </div>
+</footer>
+
+<script src="../js/site.js"></script>
+<script src="../js/snake_weights.js"></script>
+<script src="../js/snake.js"></script>
+<script>initSnake();</script>
+</body>
+</html>

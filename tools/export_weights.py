@@ -1,0 +1,153 @@
+"""
+Export trained DQN weights from model/model.pth → js/snake_weights.js
+
+The model is Linear_QNet(11 → 256 → 3):
+  linear1: weight (256, 11), bias (256,)
+  linear2: weight (3, 256),  bias (3,)
+
+Usage:
+  python tools/export_weights.py                  # uses ./model/model.pth
+  python tools/export_weights.py path/to/model.pth
+"""
+import sys, os, json, struct, io
+
+def load_with_torch(path):
+    import torch
+    sd = torch.load(path, map_location="cpu")
+    return {k: v.tolist() for k, v in sd.items()}
+
+def load_without_torch(path):
+    """Minimal pickle reader for PyTorch zip archives (no torch required)."""
+    import zipfile, pickle
+
+    class _Tensor:
+        def __init__(self, storage_key, offset, shape, stride):
+            self.storage_key = storage_key; self.offset = offset
+            self.shape = shape; self.stride = stride
+
+    class _Storage:
+        def __init__(self, data): self.data = data
+
+    class _TorchUnpickler(pickle.Unpickler):
+        def __init__(self, f, storage_map):
+            super().__init__(f); self.storage_map = storage_map
+
+        def find_class(self, module, name):
+            if name in ("FloatStorage", "LongStorage", "BFloat16Storage",
+                        "HalfStorage", "DoubleStorage"):
+                def make_storage(size):
+                    return _Storage(self.storage_map.get("?"))
+                return make_storage
+            if name == "RebuildTensor" or name == "rebuild_tensor_v2":
+                return lambda *a: a
+            return super().find_class(module, name)
+
+    with zipfile.ZipFile(path) as z:
+        names = z.namelist()
+        data_prefix = [n for n in names if "/data/" in n]
+
+        storage_map = {}
+        for n in data_prefix:
+            key = n.split("/data/")[-1]
+            raw = z.read(n)
+            floats = list(struct.unpack(f"{len(raw)//4}f", raw))
+            storage_map[key] = floats
+
+        # find the pickle file
+        pkl_name = [n for n in names if n.endswith(".pkl") or n.endswith("data.pkl")]
+        if not pkl_name:
+            pkl_name = [n for n in names if n.endswith("pickle")]
+        pkl_data = z.read(pkl_name[0])
+
+    class RealUnpickler(pickle.Unpickler):
+        def __init__(self, f, smap):
+            super().__init__(f); self.smap = smap; self._storage_idx = [0]
+
+        def persistent_load(self, pid):
+            if isinstance(pid, tuple):
+                dtype = pid[1].__name__ if hasattr(pid[1], "__name__") else str(pid[1])
+                key = pid[2]
+                return _Storage(self.smap.get(key, self.smap.get(str(self._storage_idx[0]))))
+            return pid
+
+        def find_class(self, module, name):
+            if name == "rebuild_tensor_v2":
+                def rebuild(storage, offset, size, stride, *args):
+                    data = storage.data or []
+                    # row-major flatten
+                    n = 1
+                    for s in size: n *= s
+                    flat = data[offset: offset + n]
+                    return (size, flat)
+                return rebuild
+            if name in ("OrderedDict",): return dict
+            try:
+                return super().find_class(module, name)
+            except Exception:
+                return lambda *a, **k: None
+
+    obj = RealUnpickler(io.BytesIO(pkl_data), storage_map).load()
+
+    result = {}
+    if isinstance(obj, dict):
+        for k, v in obj.items():
+            if isinstance(v, tuple) and len(v) == 2:
+                shape, flat = v
+                result[k] = _reshape(list(flat), list(shape))
+            elif isinstance(v, (list,)):
+                result[k] = v
+    return result
+
+def _reshape(flat, shape):
+    if len(shape) == 1:
+        return flat[:shape[0]]
+    cols = shape[1]
+    return [flat[i*cols:(i+1)*cols] for i in range(shape[0])]
+
+def main():
+    model_path = sys.argv[1] if len(sys.argv) > 1 else os.path.join(
+        os.path.dirname(__file__), "..", "model", "model.pth")
+    model_path = os.path.abspath(model_path)
+
+    if not os.path.exists(model_path):
+        print(f"model.pth not found at {model_path}")
+        print("Download it: curl -L https://raw.githubusercontent.com/gouravdangi/Sanke_game_AI/main/model/model.pth -o model/model.pth")
+        sys.exit(1)
+
+    try:
+        import torch  # noqa: F401
+        sd = load_with_torch(model_path)
+        method = "torch"
+    except ImportError:
+        sd = load_without_torch(model_path)
+        method = "manual"
+
+    print(f"Loaded via {method}. Keys: {list(sd.keys())}")
+
+    l1w = sd.get("linear1.weight")
+    l1b = sd.get("linear1.bias")
+    l2w = sd.get("linear2.weight")
+    l2b = sd.get("linear2.bias")
+
+    if l1w is None:
+        print("ERROR: expected keys linear1.weight / linear1.bias / linear2.weight / linear2.bias")
+        print("Got:", list(sd.keys()))
+        sys.exit(1)
+
+    out_path = os.path.join(os.path.dirname(__file__), "..", "js", "snake_weights.js")
+    out_path = os.path.abspath(out_path)
+
+    js = (
+        "/* Auto-generated by tools/export_weights.py — do not edit manually */\n"
+        "/* Linear_QNet(11->256->3): trained DQN weights from model/model.pth */\n"
+        f"var SNAKE_DQN_WEIGHTS = {json.dumps({'l1w': l1w, 'l1b': l1b, 'l2w': l2w, 'l2b': l2b}, separators=(',', ':'))};\n"
+    )
+
+    with open(out_path, "w") as f:
+        f.write(js)
+
+    size_kb = os.path.getsize(out_path) / 1024
+    print(f"Wrote {out_path} ({size_kb:.1f} KB)")
+
+if __name__ == "__main__":
+    main()

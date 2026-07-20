@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Falcon 9 Cost Predictor | Gourav Dangi</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link rel="icon" type="image/svg+xml" href="../assets/favicon.svg" />
+  <link rel="stylesheet" href="../css/styles.css" />
+  <script>(function(){var s=localStorage.getItem('theme')||(window.matchMedia('(prefers-color-scheme:dark)').matches?'dark':'light');document.documentElement.setAttribute('data-theme',s);})();</script>
+</head>
+<body>
+
+<nav id="navbar">
+  <div class="container nav-inner">
+    <a href="../index.html" class="nav-logo">GD</a>
+    <ul class="nav-links">
+      <li><a href="../index.html#about">About</a></li>
+      <li><a href="../index.html#experience">Experience</a></li>
+      <li><a href="../index.html#projects">Projects</a></li>
+      <li><a href="../index.html#skills">Skills</a></li>
+      <li><a href="../index.html#contact">Contact</a></li>
+    </ul>
+    <div class="nav-actions">
+      <a href="../assets/resume.pdf" download class="btn-resume desktop">Resume</a>
+      <button class="theme-toggle" id="themeToggle" aria-label="Toggle colour theme">
+        <svg class="icon-sun" viewBox="0 0 24 24"><circle cx="12" cy="12" r="5"/><line x1="12" y1="2" x2="12" y2="4"/><line x1="12" y1="20" x2="12" y2="22"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="2" y1="12" x2="4" y2="12"/><line x1="20" y1="12" x2="22" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/></svg>
+        <svg class="icon-moon" viewBox="0 0 24 24" style="display:none"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
+      </button>
+      <button class="hamburger" id="hamburger" aria-label="Open menu" aria-expanded="false">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </div>
+</nav>
+<div class="nav-mobile" id="mobileNav">
+  <a href="../index.html#about">About</a>
+  <a href="../index.html#experience">Experience</a>
+  <a href="../index.html#projects">Projects</a>
+  <a href="../index.html#skills">Skills</a>
+  <a href="../index.html#contact">Contact</a>
+</div>
+
+<div class="proj-page">
+  <div class="proj-page-header">
+    <div class="container">
+      <a href="../index.html#projects" class="proj-back">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><polyline points="15 18 9 12 15 6"/></svg>
+        Back to projects
+      </a>
+      <div class="proj-page-kicker">02 &mdash; ML Demo</div>
+      <h1 class="proj-page-title">Falcon 9 Cost Predictor</h1>
+      <p class="proj-page-sub">Adjust payload, orbit, and booster reuse — see estimated launch cost and landing probability update in real time.</p>
+    </div>
+  </div>
+
+  <div class="container">
+    <div class="proj-page-body">
+
+      <!-- Demo -->
+      <div class="proj-demo-area">
+        <div class="falcon-demo">
+          <div class="slider-row">
+            <label class="slider-label" for="payloadSlider">Payload Mass <span id="payloadVal">5,500 kg</span></label>
+            <input type="range" id="payloadSlider" min="100" max="22800" value="5500" step="100" />
+          </div>
+          <div class="slider-row">
+            <label class="slider-label" for="reuseSlider">Booster Flights (Reuse) <span id="reuseVal">1</span></label>
+            <input type="range" id="reuseSlider" min="0" max="15" value="1" step="1" />
+          </div>
+          <div class="select-row">
+            <label class="slider-label" for="orbitSelect" style="margin-bottom:0.4rem">Orbit Type</label>
+            <select id="orbitSelect">
+              <option value="LEO">Low Earth Orbit (LEO)</option>
+              <option value="ISS">ISS resupply</option>
+              <option value="MEO">Medium Earth Orbit (MEO)</option>
+              <option value="GTO" selected>Geostationary Transfer (GTO)</option>
+              <option value="VLEO">Very Low Earth Orbit (VLEO)</option>
+              <option value="SSO">Sun-Synchronous (SSO)</option>
+              <option value="HEO">Highly Elliptical (HEO)</option>
+            </select>
+          </div>
+          <div class="select-row">
+            <label class="slider-label" for="launchSiteSelect" style="margin-bottom:0.4rem">Launch Site</label>
+            <select id="launchSiteSelect">
+              <option value="KSC">Kennedy Space Center LC-39A</option>
+              <option value="VAFB">Vandenberg SFB SLC-4E</option>
+              <option value="CCSFS" selected>Cape Canaveral SLC-40</option>
+            </select>
+          </div>
+          <div class="falcon-result">
+            <div class="falcon-cost-val" id="falconCost">$67M</div>
+            <div class="falcon-cost-sub">Estimated launch cost &middot; Decision-tree model (87.5% accuracy)</div>
+            <div class="falcon-breakdown" id="falconBreakdown"></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Info column -->
+      <div class="proj-info-col">
+        <div class="proj-info-section">
+          <h4>The project</h4>
+          <p>Predicts Falcon 9 launch cost and booster landing probability using payload mass, target orbit, booster reuse history, and launch site. Trained on historical SpaceX mission data.</p>
+        </div>
+        <div class="proj-info-section">
+          <h4>Model</h4>
+          <p>A decision-tree classifier trained on features extracted from the SpaceX REST API and Wikipedia web scraping. Best model accuracy: <strong>87.5%</strong>.</p>
+        </div>
+        <div class="proj-info-section">
+          <h4>Cost formula</h4>
+          <p>This demo implements the tree's decision logic transparently: base cost by orbit type + payload surcharge + reuse discount + launch-site modifier. The breakdown is shown live below the result.</p>
+        </div>
+        <div class="proj-info-section">
+          <h4>Stack</h4>
+          <div class="project-tags" style="margin-top:0.4rem">
+            <span class="tag">Python</span>
+            <span class="tag">scikit-learn</span>
+            <span class="tag">Decision Tree</span>
+            <span class="tag">SpaceX API</span>
+            <span class="tag">Web Scraping</span>
+            <span class="tag">Plotly</span>
+            <span class="tag">Folium</span>
+          </div>
+        </div>
+        <div class="proj-info-section">
+          <h4>Links</h4>
+          <div class="info-links">
+            <a href="https://github.com/gouravdangi/rocket-cost-prediction" target="_blank" rel="noopener" class="info-link">
+              <svg viewBox="0 0 24 24"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
+              GitHub — rocket-cost-prediction
+            </a>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+<footer>
+  <div class="container footer-inner">
+    <p class="footer-left">&copy; 2025 <strong>Gourav Dangi</strong></p>
+    <a href="../index.html" class="back-top">
+      <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><polyline points="15 18 9 12 15 6"/></svg>
+      Home
+    </a>
+  </div>
+</footer>
+
+<script src="../js/site.js"></script>
+<script src="../js/falcon.js"></script>
+<script>initFalcon();</script>
+</body>
+</html>
