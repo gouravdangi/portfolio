@@ -76,7 +76,7 @@ const KNOWLEDGE_BASE = [
     • Pest & disease identification and management<br>
     • Fertilizer schedules and soil health<br>
     • Irrigation guidance<br><br>
-    Ask me anything — or pick a suggestion below!`,
+    Ask me anything or pick a suggestion below!`,
   },
 ];
 

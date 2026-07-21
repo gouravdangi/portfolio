@@ -10,13 +10,13 @@ const SOCIAL = {
 const EXPERIENCE = [
   {
     company: 'Respo Financial Limited',
-    role: 'SDE 2 — AI / ML',
+    role: 'SDE 2 AI / ML',
     dates: 'Jun 2025 – Present',
     icon: '🚀',
     bullets: [
-      'Built a GraphRAG-based customer support automation service that handles <strong>77%</strong> of total support tickets end-to-end, cutting first-response time from 48 h to under 1 minute.',
+      'Built a GraphRAG based customer support automation service that handles <strong>77%</strong> of total support tickets end-to-end, cutting first-response time from 48 h to under 1 minute.',
       'Designed scalable AI microservices for retrieval, orchestration & workflow automation, integrating local LLM inference via <strong>Ollama</strong> for cost-efficient on-prem serving.',
-      'Developed AI voice-calling agents (Sarvam STT/TTS) for debt collection & EMI reminders, completing <strong>3,000+ automated calls daily</strong> — equivalent to 30+ human agents.',
+      'Developed AI voice calling agents (Sarvam STT/TTS) for debt collection & EMI reminders, completing <strong>3,000+ automated calls daily</strong> equivalent to 30+ human agents.',
       'Built operational dashboards to monitor call outcomes, escalation metrics, and bot performance across AI-driven support workflows.',
     ],
   },
@@ -47,13 +47,13 @@ const PROJECTS = [
   {
     id: 'snake',
     index: '01',
-    title: 'Snake Game — Human vs AI Race',
+    title: 'Snake Game : Human vs AI Race',
     summary: 'Play snake against a BFS/DQN agent in real-time split-screen.',
     badge: 'Play Live',
     interactive: true,
     href: 'projects/snake.html',
     tags: ['Reinforcement Learning', 'Deep Q-Network', 'PyTorch', 'Python'],
-    description: 'A reinforcement-learning agent (Deep Q-Network) learns to play Snake from scratch. Challenge it on a split-screen race — your board vs the AI, seeded with the same food sequence.',
+    description: 'A reinforcement-learning agent (Deep Q-Network) learns to play Snake from scratch. Challenge it on a split-screen race, your board vs the AI, seeded with the same food sequence.',
     links: [{ label: 'GitHub', href: 'https://github.com/gouravdangi/Sanke_game_AI' }],
   },
   {
@@ -65,7 +65,7 @@ const PROJECTS = [
     interactive: false,
     href: 'projects/graphrag.html',
     tags: ['GraphRAG', 'Ollama', 'Microservices' , 'Freshdesk'],
-    description: 'GraphRAG retrieves contextual knowledge, generates first-response emails, and surfaces CX summaries — automating 72% of tickets at Respo Financial.',
+    description: 'GraphRAG retrieves contextual knowledge, generates first-response emails, and surfaces CX summaries automating 72% of tickets at Respo Financial.',
     links: [],
   },
   {
@@ -83,7 +83,7 @@ const PROJECTS = [
   {
     id: 'bandit',
     index: '04',
-    title: 'Multi-Armed Bandit — Nudge Timing',
+    title: 'Multi-Armed Bandit : Nudge Timing',
     summary: 'Epsilon-greedy bandit learns the best hour to trigger a push notification.',
     badge: 'Run Demo',
     interactive: true,
@@ -95,7 +95,7 @@ const PROJECTS = [
   {
     id: 'chatbot',
     index: '05',
-    title: 'Agri RAG Chatbot',
+    title: 'Agri Chatbot',
     summary: 'Intent-aware agricultural advisory chatbot backed by a RAG knowledge base.',
     badge: 'Try it',
     interactive: true,
@@ -120,7 +120,7 @@ const PROJECTS = [
     id: 'airpollution',
     index: '07',
     title: 'Air Pollution Hotspot Mapping',
-    summary: 'Spatial analysis of PM and gaseous pollutants — B.Tech thesis at IIT Guwahati.',
+    summary: 'Spatial analysis of PM and gaseous pollutants - B.Tech thesis at IIT Guwahati.',
     badge: 'Research',
     interactive: false,
     href: 'projects/air-pollution.html',
@@ -139,8 +139,8 @@ const SKILLS = [
 ];
 
 const ACHIEVEMENTS = [
-  { icon: '🏆', title: 'BlinkX Rodies Achiever Award',        desc: 'Employee of the quarter equivalent in the AI/ML domain — Q4 2023' },
-  { icon: '🎖️', title: 'Institute Secretary — Volleyball',    desc: 'Elected secretary of the volleyball club at IIT Guwahati for 2020-21' },
+  { icon: '🏆', title: 'BlinkX Rodies Achiever Award',        desc: 'Employee of the quarter equivalent in the AI/ML domain (Q4 2023)' },
+  { icon: '🎖️', title: 'Institute Secretary - Volleyball',    desc: 'Elected secretary of the volleyball club at IIT Guwahati for 2020-21' },
   { icon: '💻', title: 'LeetCode Rating 1771',               desc: 'Competitive programming', link: 'https://leetcode.com/u/gouravdangi2002/' },
-  { icon: '🎭', title: 'Inter-IIT Cultural Meet — 3rd Place', desc: 'Theatre module among 23 IITs at IIT Bombay (2019)' },
+  { icon: '🎭', title: 'Inter-IIT Cultural Meet - 3rd Place', desc: 'Theatre module among 23 IITs at IIT Bombay (2019)' },
 ];
