@@ -14,7 +14,7 @@ const EXPERIENCE = [
     dates: 'Jun 2025 – Present',
     icon: '🚀',
     bullets: [
-      'Built a GraphRAG-based customer support automation service that handles <strong>72%</strong> of total support tickets end-to-end, cutting first-response time from 48 h to under 1 minute.',
+      'Built a GraphRAG-based customer support automation service that handles <strong>77%</strong> of total support tickets end-to-end, cutting first-response time from 48 h to under 1 minute.',
       'Designed scalable AI microservices for retrieval, orchestration & workflow automation, integrating local LLM inference via <strong>Ollama</strong> for cost-efficient on-prem serving.',
       'Developed AI voice-calling agents (Sarvam STT/TTS) for debt collection & EMI reminders, completing <strong>3,000+ automated calls daily</strong> — equivalent to 30+ human agents.',
       'Built operational dashboards to monitor call outcomes, escalation metrics, and bot performance across AI-driven support workflows.',
@@ -60,7 +60,7 @@ const PROJECTS = [
     id: 'graphrag',
     index: '02',
     title: 'GraphRAG Customer Support',
-    summary: 'End-to-end support automation pipeline serving 72% of tickets without human touch.',
+    summary: 'End-to-end support automation pipeline serving 77% of tickets without human touch.',
     badge: 'Production',
     interactive: false,
     href: 'projects/graphrag.html',
