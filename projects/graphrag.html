@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>GraphRAG Customer Support | Gourav Dangi</title>
+  <title>Hierarchical RAG Customer Support | Gourav Dangi</title>
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link rel="icon" type="image/svg+xml" href="../assets/favicon.svg" />
@@ -50,7 +50,7 @@
         Back to projects
       </a>
       <div class="proj-page-kicker">05 &mdash; Production AI System</div>
-      <h1 class="proj-page-title">GraphRAG Customer Support Automation</h1>
+      <h1 class="proj-page-title">Hierarchical RAG Customer Support Automation</h1>
       <p class="proj-page-sub">End-to-end support pipeline that handles 77% of incoming tickets without a human — cutting first-response time from 48 hours to under 1 minute.</p>
     </div>
   </div>
@@ -76,7 +76,6 @@
         <div class="stat-label">Live at Respo Financial</div>
       </div>
     </div>
-
     <div class="detail-grid">
       <div class="detail-block">
         <h4>The problem</h4>
@@ -85,21 +84,20 @@
 
       <div class="detail-block">
         <h4>The approach</h4>
-        <p>Built a <strong>GraphRAG</strong> pipeline using a <strong>Neo4j</strong> knowledge graph that models relationships between customers, products, policies, and past interactions. Incoming tickets are embedded and matched against the graph, the relevant subgraph is retrieved, and a local LLM (served via <strong>Ollama</strong>) drafts the response. A <strong>LangGraph</strong> orchestrator handles routing, human-escalation detection, and workflow automation.</p>
+        <p>Built a <strong>retrieve-then-classify RAG</strong> pipeline over a curated intent knowledge base (FAISS + embeddings). Incoming Freshdesk tickets are embedded, top-k category/subcategory definitions are retrieved, and a local LLM (served via <strong>Ollama</strong>) classifies intent. Domain handlers then pull live loan, payment, and profile data and compose <strong>policy-templated</strong> replies — not free-form generation. A ticket-state orchestrator handles routing, skip-lists for sensitive issues, and human-escalation.</p>
       </div>
 
       <div class="detail-block">
         <h4>Impact</h4>
-        <div class="impact-stat"><span class="impact-num">77%</span><span class="impact-label">of tickets resolved fully autonomously</span></div>
+        <div class="impact-stat"><span class="impact-num">77%</span><span class="impact-label">of tickets auto-handled on first response</span></div>
         <div class="impact-stat"><span class="impact-num">48h→1m</span><span class="impact-label">first-response time</span></div>
-        <p style="margin-top:0.7rem">The remaining 23% are routed to agents with a pre-populated context summary, cutting handling time in half for those too.</p>
+        <p style="margin-top:0.7rem">The remaining 23% are routed to agents with pre-populated response notes and CX summaries, so they skip the manual investigation.</p>
       </div>
 
       <div class="detail-block">
         <h4>Architecture highlights</h4>
-        <p><strong>GraphRAG</strong> outperforms flat vector search here because relationships matter — an EMI query needs the customer's account graph, not just keyword similarity. The system runs entirely on-prem with <strong>Ollama</strong> (Mistral 7B), so no PII leaves the perimeter. LangGraph provides the retry/escalation loop with full observability.</p>
+        <p>Flat vector search is not enough here — an EMI query needs the customer's <strong>live account state</strong>, not just similar past tickets. RAG classifies intent; category handlers ground the reply in systems of record and controlled templates. The LLM runs on-prem via <strong>Ollama</strong> (with SLM fallbacks), so PII stays inside the perimeter. Retry, stale-ticket recovery, and escalation are first-class in the workflow, with daily coverage reporting.</p>
       </div>
-
       <div class="detail-block">
         <h4>Technology stack</h4>
         <div class="project-tags" style="margin-top:0.4rem">
@@ -114,7 +112,7 @@
 
       <div class="detail-block">
         <h4>Other AI work at Respo Financial</h4>
-        <p>Alongside the GraphRAG system, I built <strong>AI voice-calling agents</strong> using Sarvam STT/TTS for debt collection and EMI reminders — completing <strong>3,000+ automated calls per day</strong>, equivalent to 30+ human agents. Operational dashboards track call outcomes, escalation rates, and bot performance.</p>
+        <p>Alongside the hierarchical RAG system, I built <strong>AI voice-calling agents</strong> using Sarvam STT/TTS for debt collection and EMI reminders — completing <strong>3,000+ automated calls per day</strong>, equivalent to 30+ human agents. Operational dashboards track call outcomes, escalation rates, and bot performance.</p>
       </div>
     </div>
   </div>
