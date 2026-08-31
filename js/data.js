@@ -44,9 +44,21 @@ const EXPERIENCE = [
 ];
 
 const PROJECTS = [
+    {
+    id: 'agent',
+    index: '01',
+    title: 'Self-Learning Agent',
+    summary: 'Local-first agent that remembers facts and learns from feedback — verbal RL, not fine-tuning.',
+    badge: 'Walk the loop',
+    interactive: true,
+    href: 'projects/agent.html',
+    tags: ['Agents', 'Mem0', 'Qdrant', 'Ollama', 'Verbal RL'],
+    description: 'A local-first self-learning agent that retrieves facts, lessons, and skills, acts with them in context, then learns from /good and /bad feedback via verbal reinforcement — not model fine-tuning.',
+    links: [{ label: 'GitHub', href: 'https://github.com/gouravdangi/self-learning-ai-agent' }],
+  },
   {
     id: 'snake',
-    index: '01',
+    index: '02',
     title: 'Snake Game : Human vs AI Race',
     summary: 'Play snake against a BFS/DQN agent in real-time split-screen.',
     badge: 'Play Live',
@@ -58,7 +70,7 @@ const PROJECTS = [
   },
   {
     id: 'graphrag',
-    index: '02',
+    index: '03',
     title: 'Hierarchical RAG Customer Support',
     summary: 'End-to-end support automation pipeline serving 77% of tickets without human touch.',
     badge: 'Production',
@@ -70,7 +82,7 @@ const PROJECTS = [
   },
   {
     id: 'anomaly',
-    index: '03',
+    index: '04',
     title: 'Anomaly Detection via Whisper + LLM',
     summary: 'Detects mis-selling in call recordings using STT and an LLM compliance pipeline.',
     badge: 'ML Pipeline',
@@ -82,7 +94,7 @@ const PROJECTS = [
   },
   {
     id: 'bandit',
-    index: '04',
+    index: '05',
     title: 'Multi-Armed Bandit : Nudge Timing',
     summary: 'Epsilon-greedy bandit learns the best hour to trigger a push notification.',
     badge: 'Run Demo',
@@ -94,7 +106,7 @@ const PROJECTS = [
   },
   {
     id: 'chatbot',
-    index: '05',
+    index: '06',
     title: 'Agri Chatbot',
     summary: 'Intent-aware agricultural advisory chatbot backed by a RAG knowledge base.',
     badge: 'Try it',
@@ -106,7 +118,7 @@ const PROJECTS = [
   },
   {
     id: 'falcon',
-    index: '06',
+    index: '07',
     title: 'Falcon 9 Cost Predictor',
     summary: 'Predict launch cost & landing probability from payload, orbit, and reuse data.',
     badge: 'Interactive Demo',
@@ -118,7 +130,7 @@ const PROJECTS = [
   },
   {
     id: 'airpollution',
-    index: '07',
+    index: '08',
     title: 'Air Pollution Hotspot Mapping',
     summary: 'Spatial analysis of PM and gaseous pollutants - B.Tech thesis at IIT Guwahati.',
     badge: 'Research',
@@ -132,9 +144,9 @@ const PROJECTS = [
 
 const SKILLS = [
   { group: 'Programming',         items: ['Python', 'TypeScript', 'SQL', 'C++'] },
-  { group: 'Databases',           items: ['PostgreSQL', 'MySQL', 'MongoDB', 'Pinecone', 'Neo4j'] },
+  { group: 'Databases',           items: ['PostgreSQL', 'MySQL', 'MongoDB', 'Qdrant', 'Pinecone', 'Neo4j'] },
   { group: 'AI / ML',             items: ['PyTorch', 'TensorFlow', 'scikit-learn', 'spaCy', 'LangGraph', 'SmolAgents', 'NLP', 'RLHF'] },
-  { group: 'GenAI & AI Systems',  items: ['RAG', 'GraphRAG', 'Fine-Tuning', 'AI Agents', 'Ollama', 'Prompt Engineering', 'STT/TTS Systems'] },
+  { group: 'GenAI & AI Systems',  items: ['RAG', 'GraphRAG', 'Fine-Tuning', 'AI Agents', 'Mem0', 'Ollama', 'Prompt Engineering', 'STT/TTS Systems'] },
   { group: 'Core Competencies',   items: ['Applied AI', 'Conversational AI', 'Voice AI', 'Latency Optimisation', 'Graph ML', 'Model Deployment'] },
 ];
 
