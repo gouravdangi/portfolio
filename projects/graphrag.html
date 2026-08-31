@@ -51,7 +51,7 @@
       </a>
       <div class="proj-page-kicker">05 &mdash; Production AI System</div>
       <h1 class="proj-page-title">Hierarchical RAG Customer Support Automation</h1>
-      <p class="proj-page-sub">End-to-end support pipeline that handles 77% of incoming tickets without a human — cutting first-response time from 48 hours to under 1 minute.</p>
+      <p class="proj-page-sub">End-to-end support pipeline that handles 77% of incoming tickets without a human, cutting first-response time from 48 hours to under 1 minute.</p>
     </div>
   </div>
 
@@ -79,12 +79,12 @@
     <div class="detail-grid">
       <div class="detail-block">
         <h4>The problem</h4>
-        <p>Respo Financial's customer support team was spending most of its time on repetitive, templated tickets — EMI queries, account status checks, repayment schedules, and escalation acknowledgements. Response times averaged 48 hours, leading to customer churn and agent burnout.</p>
+        <p>Respo Financial's customer support team was spending most of its time on repetitive, templated tickets, EMI queries, account status checks, repayment schedules, and escalation acknowledgements. Response times averaged 48 hours, leading to customer churn and agent burnout.</p>
       </div>
 
       <div class="detail-block">
         <h4>The approach</h4>
-        <p>Built a <strong>retrieve-then-classify RAG</strong> pipeline over a curated intent knowledge base (FAISS + embeddings). Incoming Freshdesk tickets are embedded, top-k category/subcategory definitions are retrieved, and a local LLM (served via <strong>Ollama</strong>) classifies intent. Domain handlers then pull live loan, payment, and profile data and compose <strong>policy-templated</strong> replies — not free-form generation. A ticket-state orchestrator handles routing, skip-lists for sensitive issues, and human-escalation.</p>
+        <p>Built a <strong>retrieve-then-classify RAG</strong> pipeline over a curated intent knowledge base (FAISS + embeddings). Incoming Freshdesk tickets are embedded, top-k category/subcategory definitions are retrieved, and a local LLM (served via <strong>Ollama</strong>) classifies intent. Domain handlers then pull live loan, payment, and profile data and compose <strong>policy-templated</strong> replies, not free-form generation. A ticket-state orchestrator handles routing, skip-lists for sensitive issues, and human-escalation.</p>
       </div>
 
       <div class="detail-block">
@@ -96,7 +96,7 @@
 
       <div class="detail-block">
         <h4>Architecture highlights</h4>
-        <p>Flat vector search is not enough here — an EMI query needs the customer's <strong>live account state</strong>, not just similar past tickets. RAG classifies intent; category handlers ground the reply in systems of record and controlled templates. The LLM runs on-prem via <strong>Ollama</strong> (with SLM fallbacks), so PII stays inside the perimeter. Retry, stale-ticket recovery, and escalation are first-class in the workflow, with daily coverage reporting.</p>
+        <p>Flat vector search is not enough here, an EMI query needs the customer's <strong>live account state</strong>, not just similar past tickets. RAG classifies intent; category handlers ground the reply in systems of record and controlled templates. The LLM runs on-prem via <strong>Ollama</strong> (with SLM fallbacks), so PII stays inside the perimeter. Retry, stale-ticket recovery, and escalation are first-class in the workflow, with daily coverage reporting.</p>
       </div>
       <div class="detail-block">
         <h4>Technology stack</h4>
@@ -112,7 +112,7 @@
 
       <div class="detail-block">
         <h4>Other AI work at Respo Financial</h4>
-        <p>Alongside the hierarchical RAG system, I built <strong>AI voice-calling agents</strong> using Sarvam STT/TTS for debt collection and EMI reminders — completing <strong>3,000+ automated calls per day</strong>, equivalent to 30+ human agents. Operational dashboards track call outcomes, escalation rates, and bot performance.</p>
+        <p>Alongside the hierarchical RAG system, I built <strong>AI voice-calling agents</strong> using Sarvam STT/TTS for debt collection and EMI reminders, completing <strong>3,000+ automated calls per day</strong>, equivalent to 30+ human agents. Operational dashboards track call outcomes, escalation rates, and bot performance.</p>
       </div>
     </div>
   </div>
