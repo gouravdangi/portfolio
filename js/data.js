@@ -2,7 +2,7 @@
 
 const SOCIAL = {
   github:   'https://github.com/gouravdangi',
-  linkedin: 'https://www.linkedin.com/in/gouravdangi',
+  linkedin: 'https://www.linkedin.com/in/gourav-dangi',
   leetcode: 'https://leetcode.com/u/gouravdangi2002/',
   email:    'mailto:gouravdangi.work@gmail.com',
 };
@@ -10,7 +10,7 @@ const SOCIAL = {
 const EXPERIENCE = [
   {
     company: 'Respo Financial Limited',
-    role: 'SDE 2 AI / ML',
+    role: 'AI ML Engineer',
     dates: 'Jun 2025 – Present',
     icon: '🚀',
     bullets: [
